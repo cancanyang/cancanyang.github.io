@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Go项目的目录结构 | cancanyang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/app.css">
+  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
+</head>
+
+<body>
+  <nav class="app-nav">
+  
+    
+      <a href="/.">home</a>
+    
+  
+    
+      <a href="/archives">archive</a>
+    
+  
+    
+      <a href="/atom.xml">rss</a>
+    
+  
+</nav>
+
+  <main class="post">
+  <article>
+  <h1 class="article-title">
+    <a href="/2017/02/16/Go项目的目录结构/">Go项目的目录结构</a>
+  </h1>
+
+  <section class="article-meta">
+    <p class="article-date">February 16 2017</p>
+  </section>
+
+  <section class="article-entry">
+    <h2 id="Go项目的目录结构"><a href="#Go项目的目录结构" class="headerlink" title="Go项目的目录结构"></a>Go项目的目录结构</h2><h3 id="GOPATH项目的目录结构"><a href="#GOPATH项目的目录结构" class="headerlink" title="GOPATH项目的目录结构"></a>GOPATH项目的目录结构</h3><p>一般GOPATH项目的目录结构为</p>
+<blockquote>
+<p>|–bin  存放编译后的可执行文件<br>|–pkg  存放编译后的包文件<br>|–src  源代码</p>
+</blockquote>
+<h3 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|-- install.bat</div><div class="line">|-- install.sh</div><div class="line">|-- src</div><div class="line">  |-- config</div><div class="line">    |-- config.go</div><div class="line">  |-- main</div><div class="line">    -- main.go</div></pre></td></tr></table></figure>
+<p>其中install</p>
+<p>Linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if [ ! -f install ]; then</div><div class="line">echo &apos;install must be run within its container folder&apos; 1&gt;&amp;2</div><div class="line">exit 1</div><div class="line">fi</div><div class="line"></div><div class="line">CURDIR=`pwd`</div><div class="line">OLDGOPATH=&quot;$GOPATH&quot;</div><div class="line">export GOPATH=&quot;$CURDIR&quot;</div><div class="line"></div><div class="line">gofmt -w src</div><div class="line"></div><div class="line">go install main</div><div class="line"></div><div class="line">export GOPATH=&quot;$OLDGOPATH&quot;</div><div class="line"></div><div class="line">echo &apos;finished&apos;</div></pre></td></tr></table></figure>
+<p>Windows</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@echo off</div><div class="line"></div><div class="line">setlocal</div><div class="line"></div><div class="line"><span class="keyword">if</span> exist install.bat goto ok</div><div class="line">echo install.bat must be run from its folder</div><div class="line">goto <span class="keyword">end</span></div><div class="line"></div><div class="line">: ok</div><div class="line"></div><div class="line">set OLDGOPATH=%GOPATH%</div><div class="line">set GOPATH=%~dp0</div><div class="line"></div><div class="line">gofmt -w src</div><div class="line"></div><div class="line">go install test</div><div class="line"></div><div class="line">:<span class="keyword">end</span></div><div class="line">echo finished</div></pre></td></tr></table></figure>
+  </section>
+</article>
+
+  <div class="sharing grid">
+  <section class="profile grid-item grid">
+    <img class="avatar" src="http://7xrcp8.com1.z0.glb.clouddn.com/avatar.png" alt="avatar" />
+    <div class="grid-item">
+      <p class="title"> cancanyang </p>
+      <p class="subtitle"> 做一个对社会有用的人 </p>
+    <div>
+  </section>
+
+  <section class="share-btns">
+    <!-- <p> share it if you like it~ </p> -->
+    <a
+  class="twitter-share-button"
+  data-size="large"
+  data-via="DrakeLeung"
+  href="https://twitter.com/intent/tweet?text= id="Go项目的目录结构"><a h"
+>
+  Tweet
+</a>
+
+<script>
+  window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  js.async = true;
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+
+  </section>
+</div>
+
+
+  
+</main>
+
+</body>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?22783ae195333dadd2692c0edf8f6619";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</html>
